@@ -15,21 +15,20 @@
 
 ### Association
 - has_many :items
-- has_one :address
 - has_many :purchases
 
 ## Items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| price           | integer    | null: false                    |
-| category        | integer    | null: false                    |
-| user            | references | foreign_key: true              |
-| item_status     | integer    | null: false                    |
-| shipping_charge | integer    | null: false                    |
-| shipping_area   | integer    | null: false                    |
-| days_to_ship    | integer    | null: false                    |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| price              | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
+| item_status_id     | integer    | null: false                    |
+| shipping_charge_id | integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
 
 ### Association
 - belongs_to :user
@@ -39,11 +38,11 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | postal_code   | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | house_number  | string     | null: false                    |
-| building_name | string     | null: false                    |
-| purchase      | references | foreign_key: true              |
+| building_name | string     |                                |
+| purchase      | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
@@ -51,8 +50,8 @@
 ## purchases テーブル
 | Column    | Type           | Options                        |
 | --------- | -------------- | ------------------------------ |
-| user      | references     | foreign_key: true              |
-| item      | references     | foreign_key: true              |
+| user      | references     | null: false, foreign_key: true |
+| item      | references     | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
