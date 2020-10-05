@@ -25,6 +25,7 @@
 | price              | integer    | null: false                    |
 | category_id        | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
+| item_description   | text       | null: false                    |
 | item_status_id     | integer    | null: false                    |
 | shipping_charge_id | integer    | null: false                    |
 | shipping_area_id   | integer    | null: false                    |
@@ -42,6 +43,7 @@
 | city          | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
+| phone_number  | integer    | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
 
 ### Association
