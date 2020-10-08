@@ -74,9 +74,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it '名前（姓）が全角以外で入力されているとき' do
-        @user.last_name = "hayashi"
+        @user.last_name = 'hayashi'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name Full-width characters")
+        expect(@user.errors.full_messages).to include('Last name Full-width characters')
       end
       it '名前（名）が空のとき' do
         @user.first_name = nil
@@ -84,9 +84,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it '名前（名）が全角以外で入力されているとき' do
-        @user.first_name = "taro"
+        @user.first_name = 'taro'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name Full-width characters")
+        expect(@user.errors.full_messages).to include('First name Full-width characters')
       end
       it '名前（姓）のフリガナが空のとき' do
         @user.last_name_kana = nil
@@ -94,9 +94,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
       it '名前（姓）のフリガナが半角のとき' do
-        @user.last_name_kana = "ﾊﾔｼ"
+        @user.last_name_kana = 'ﾊﾔｼ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana Full-width katakana characters")
+        expect(@user.errors.full_messages).to include('Last name kana Full-width katakana characters')
       end
       it '名前（名）のフリガナが空のとき' do
         @user.first_name_kana = nil
@@ -104,9 +104,9 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
       it '名前（名）のフリガナが半角のとき' do
-        @user.first_name_kana = "ﾀﾛｳ"
+        @user.first_name_kana = 'ﾀﾛｳ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana Full-width katakana characters")
+        expect(@user.errors.full_messages).to include('First name kana Full-width katakana characters')
       end
       it '生年月日が空のとき' do
         @user.birthday = nil
@@ -115,5 +115,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
 end
