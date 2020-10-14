@@ -1,15 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user
+  before_action :set_item
   before_action :sold_out_item
 
   def index
-    @item = Item.find(params[:item_id])
     @address = OrderForm.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @address = OrderForm.new(address_params)
     if @address.valid?
       pay_item
@@ -21,6 +20,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
   def address_params
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number, :token, :order_id, :item_id).merge(user_id: current_user.id)
