@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user
-
+  before_action :sold_out_item
 
   def index
     @item = Item.find(params[:item_id])
@@ -46,4 +46,11 @@ class OrdersController < ApplicationController
     end
   end
 
+  def sold_out_item
+    @item = Item.find(params[:item_id])
+    if @item.order != nil
+      redirect_to root_path
+    end
+  end
+  
 end
