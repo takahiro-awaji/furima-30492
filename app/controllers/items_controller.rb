@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :sold_out_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
       render 'show'
     end
   end
-  
+
   def edit
   end
 
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :item_description, :category_id, :item_status_id, :shipping_charge_id, 
+    params.require(:item).permit(:image, :name, :item_description, :category_id, :item_status_id, :shipping_charge_id,
                                  :shipping_area_id, :days_to_ship_id, :price).merge(user_id: current_user.id)
   end
 
@@ -56,16 +56,11 @@ class ItemsController < ApplicationController
 
   def ensure_correct_user
     @item = Item.find(params[:id])
-    if @item.user_id != current_user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id != current_user.id
   end
 
   def sold_out_item
     @item = Item.find(params[:id])
-    if @item.order != nil
-      redirect_to root_path
-    end
+    redirect_to root_path unless @item.order.nil?
   end
-  
 end
